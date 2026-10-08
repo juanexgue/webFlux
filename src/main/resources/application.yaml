@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: webFlux
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/webflux?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: admin
+    password: admin123
+
+server:
+  error:
+    include-message: always

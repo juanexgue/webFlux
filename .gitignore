@@ -1,0 +1,97 @@
+# Project specific
+HELP.md
+
+# Build outputs
+target/
+build/
+
+# Maven wrapper (some teams commit the wrapper jars; ignoring jar here as original)
+.mvn/wrapper/maven-wrapper.jar
+# If you want to keep wrapper properties, don't ignore .mvn/wrapper/maven-wrapper.properties
+
+# Allow module-level build dirs in multi-module projects
+!**/src/main/**/target/
+!**/src/test/**/target/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+# Optionally keep code style/shared settings
+!/.idea/codeStyles/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor temp/backup files
+*~
+*.swp
+*.swo
+*#
+.#*
+
+# Java / JVM
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*.log
+*.log
+*.pid
+
+# Keystores / secrets
+*.jks
+*.keystore
+*.p12
+*.pem
+.env
+.env.local
+
+# Test / coverage
+jacoco.exec
+coverage/
+surefire-reports/
+failsafe-reports/
+
+# Gradle
+.gradle/
+# If using Gradle wrapper, do NOT ignore gradle/wrapper/gradle-wrapper.jar unless intentional
+
+# Misc
+logs/
+tmp/
+out/
+
+# IDE/run configurations
+*.log
+
+# Others
+*.zip
+*.tar.gz
+
+# Keep this file tracked
+!/.gitignore
