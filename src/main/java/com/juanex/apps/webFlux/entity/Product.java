@@ -22,7 +22,6 @@ public class Product {
     private Integer id;
 
     @NotBlank(message = "name is required")
-    @Size(max = 10, message = "name must be at most 10 characters")
     private String name;
 
     @NotNull(message = "price is required")
