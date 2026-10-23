@@ -1,5 +1,6 @@
 package com.juanex.apps.webFlux.controller;
 
+import com.juanex.apps.webFlux.dto.ProductDTO;
 import com.juanex.apps.webFlux.entity.Product;
 import com.juanex.apps.webFlux.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -27,13 +28,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public Mono<Product> save(@RequestBody Product product) {
-        return productService.save(product);
+    public Mono<Product> save(@RequestBody ProductDTO productDTO) {
+        return productService.save(productDTO);
     }
 
     @PutMapping("/{id}")
-    public Mono<Product> update(@PathVariable("id") int id,@RequestBody Product product) {
-        return productService.update(id, product);
+    public Mono<Product> update(@PathVariable("id") int id,@RequestBody ProductDTO productDTO) {
+        return productService.update(id, productDTO);
     }
 
     @DeleteMapping("/{id}")

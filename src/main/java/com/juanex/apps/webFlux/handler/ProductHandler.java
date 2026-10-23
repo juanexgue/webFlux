@@ -1,7 +1,9 @@
 package com.juanex.apps.webFlux.handler;
 
+import com.juanex.apps.webFlux.dto.ProductDTO;
 import com.juanex.apps.webFlux.entity.Product;
 import com.juanex.apps.webFlux.service.ProductService;
+import com.juanex.apps.webFlux.validation.ObjectValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
@@ -17,6 +19,7 @@ import reactor.core.publisher.Mono;
 public class ProductHandler {
 
     private final ProductService productService;
+    private final ObjectValidator objectValidator;
 
     public Mono<ServerResponse> getAll(ServerRequest request) {
         Flux<Product> products = productService.getAll();
@@ -30,18 +33,19 @@ public class ProductHandler {
     }
 
     public Mono<ServerResponse> save(ServerRequest request) {
-        Mono<Product> productMono = request.bodyToMono(Product.class);
-        return productMono.flatMap(product -> {
-            Mono<Product> savedProduct = productService.save(product);
+        Mono<ProductDTO> productMono = request.bodyToMono(ProductDTO.class).doOnNext(objectValidator::validate);
+        return productMono.flatMap(productDTO -> {
+            Mono<Product> savedProduct = productService.save(productDTO);
             return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(savedProduct, Product.class);
+
         });
     }
 
     public Mono<ServerResponse> update(ServerRequest request) {
         int id = Integer.valueOf(request.pathVariable("id"));
-        Mono<Product> productMono = request.bodyToMono(Product.class);
-        return productMono.flatMap(product -> {
-            Mono<Product> updatedProduct = productService.update(id, product);
+        Mono<ProductDTO> productMono = request.bodyToMono(ProductDTO.class).doOnNext(objectValidator::validate);
+        return productMono.flatMap(productDTO -> {
+            Mono<Product> updatedProduct = productService.update(id, productDTO);
             return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(updatedProduct, Product.class);
         });
     }
